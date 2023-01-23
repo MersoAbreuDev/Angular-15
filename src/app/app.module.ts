@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedMaterialModule } from './shared/shared-material/shared-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContinuationRegisterComponent } from './componentes/continuation-register/continuation-register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { ContinuationRegisterComponent } from './componentes/continuation-regist
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

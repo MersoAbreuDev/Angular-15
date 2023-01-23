@@ -1,6 +1,7 @@
 <h1>Continue seu cadastro!</h1>
 
-<form [formGroup]="form">
+<form [formGroup]="form"
+(ngSubmit)="submit()">
   <div class="input-group mb-3">
     <input
       type="text"
@@ -35,7 +36,7 @@
   </div>
 
   <div class="image-block">
-    <!-- IMAGEM AQUI -->
+    <img [src]="isDefault ? isDefaultImage : preview " class="circle" alt="avatar">
   </div>
 
   <label for="basic-url">Adicione uma foto ao perfil</label>
@@ -45,7 +46,7 @@
       class="form-control"
       aria-label="imgProfile"
       aria-describedby="imgProfile"
-
+      (change)="onChange($event)"
     />
   </div>
 
@@ -71,7 +72,7 @@
     />
     <br />
     <div>
-      <p class="warn">As senhas não são iguais!!</p>
+      <p *ngIf="form.controls['confirmPassword'].hasError('equalsTo')" class="warn">As senhas não são iguais!!</p>
     </div>
   </div>
 
