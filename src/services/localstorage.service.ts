@@ -11,8 +11,8 @@ export class LocalstorageService {
     localStorage.setItem(name, item)
   }
 
-  getLocalStorage(item:string){
-    return JSON.parse(localStorage.getItem(item) || '{}')
+  getLocalStorage(name:string){
+    return JSON.parse(localStorage.getItem(name) || '{}')
   }
 
   removeLocalStorage(name:string){

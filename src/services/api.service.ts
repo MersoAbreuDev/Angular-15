@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enviroments } from 'src/enviroments/enviroments';
 import {Observable,  catchError, throwError } from 'rxjs';
 import { RegisterUserInterface } from 'src/app/intefaces/registerUserInterface';
 import { LoginUserInterface } from 'src/app/intefaces/loginUserInterface';
 import { UtilsService } from './utils.service';
+import { DownloadImage } from 'src/app/intefaces/downloadImage';
 @Injectable({
   providedIn: 'root'
 })
@@ -51,6 +52,26 @@ export class ApiService {
           return throwError(()=> err)
 
         })
+    )
+  }
+
+  downloadImage(imgName: string): Observable<DownloadImage>{
+    const headers =  new HttpHeaders().set('imgName', imgName)
+
+    return this.http.get<DownloadImage>(enviroments.BASE_URL+ '/download/image', {headers})
+    .pipe(
+        catchError((err)=>{
+          if(err.status === 0 && err.status !== 404){
+            this.utilsService.showError('Ocorreu um erro na aplicação, tente novamente!')
+          }else if(err.status === 404){
+            this.utilsService.showError(err.error.message)
+          }else{
+            this.utilsService.showError("Ocorreu um erro no servidor, tente mais tarde!")
+          }
+          return throwError(()=> err)
+
+        }
+      )
     )
   }
 }

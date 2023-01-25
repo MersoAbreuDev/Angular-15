@@ -64,7 +64,7 @@ export class ContinuationRegisterComponent implements OnInit, OnDestroy{
     name = this.getValueControl(this.form, 'name'),
     email = this.getValueControl(this.form, 'email'),
     age = this.getValueControl(this.form, 'age'),
-    avatar = this.getValueControl(this.form, 'avatar'),
+    image = this.getValueControl(this.form, 'avatar'),
     password = this.getValueControl(this.form, 'password'),
     confirmPassword = this.getValueControl(this.form, 'confirmPassword'),
     ){
@@ -72,7 +72,7 @@ export class ContinuationRegisterComponent implements OnInit, OnDestroy{
         name,
         email,
         age,
-        avatar,
+        image,
         password,
         confirmPassword
       }
@@ -92,7 +92,7 @@ export class ContinuationRegisterComponent implements OnInit, OnDestroy{
         takeUntil(this.destroy$)
       )
       .subscribe((res: RegisterUserInterface) => {
-        console.log(res.message)
+        console.log(res.user)
         this.localStorage.setLocalStorage('useInfo',JSON.stringify(res.user));
         this.refreshPage();
       })
